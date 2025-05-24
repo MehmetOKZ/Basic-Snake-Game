@@ -46,5 +46,39 @@ namespace Basic_Snake_Game
         yem = new Point(rastgele.Next(0,this.ClientSize.Width/kareboyutu), (rastgele.Next(0, this.ClientSize.Height / kareboyutu)));
         }
 
+        private void OyunuGuncelle(object sender, EventArgs e)
+        {
+            if (oyunBitti)
+            {
+                return;  //oyun bitmişse güncelleme duracak.
+            }
+            Point yeniBaş = yılan[0];
+            switch (yon)
+            {
+                case 0: yeniBaş.Y--; break;//YUKARI YÖN
+                case 1: yeniBaş.Y++; break;//AŞAĞI YÖN
+                case 2: yeniBaş.X--; break;//SOLA YÖN
+                case 3: yeniBaş.X++; break;//SAĞA YÖN
+
+
+            }
+            if (yeniBaş.X < 0 || yeniBaş.Y < 0 || yeniBaş.X >= this.ClientSize.Width / kareboyutu || yeniBaş.Y >= this.ClientSize.Height / kareboyutu || yılan.Contains(yeniBaş))
+            {
+                oyunBitti = true;
+                oyunZamanı.Stop();
+                MessageBox.Show("Oyun Bitti!");
+                return;
+            }
+            yılan.Insert(0, yeniBaş);
+            if (yeniBaş == yem)
+            {
+                YemOlustur();
+            }
+            else
+            {
+                yılan.RemoveAt(yılan.Count - 1);
+            }
+            this.Invalidate();
+        }
     }
 }
