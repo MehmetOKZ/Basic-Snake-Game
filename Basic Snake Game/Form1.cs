@@ -32,5 +32,19 @@ namespace Basic_Snake_Game
 
             OyunuBaslat();
         }
+        private void OyunuBaslat()
+        {
+            yılan.Clear();
+            yılan.Add(new Point(10, 10));
+            YemOlustur();
+            yon = 3;
+            oyunZamanı.Start();
+        }
+
+        private void YemOlustur()
+        {
+        yem = new Point(rastgele.Next(0,this.ClientSize.Width/kareboyutu), (rastgele.Next(0, this.ClientSize.Height / kareboyutu)));
+        }
+
     }
 }
