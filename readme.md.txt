@@ -1,68 +1,73 @@
-Form uygulaması içinde çalışan temel bir oyundur.
-Değişkenler;
-Yılan: Yılanın vücut parçaları point tipinde koordinatlar.
-Yem: Yemin koordinatı.
-Yon: Yılanın yönü (0:yukarı,1:aşağı,2sol,3:sağ)
-Kareboyutu: Yılan ve yemin bir karesinin piksel boyu
-OyunZamanı: Her 100 ms'de bir oyunu günceller.
-Oyunbitti: Oyun bitince güncellemeleri durdurur.
-Rastgele: Yeni yem için rastgele bir sayı üretir.
+# 🐍 Yılan Oyunu (Snake Game) - Windows Forms
 
-Kurucu Metot;
+Bu proje, klasik Yılan Oyunu'nun (Snake Game) C# dili kullanılarak Windows Forms üzerinde gerçekleştirilmiş basit bir sürümüdür. Oyuncu, yılanı yön tuşları ile yönlendirerek yemleri yemeye çalışır. Her yem yendiğinde yılan uzar. Duvara çarparsa veya kendine değerse oyun sona erer.
 
-public YılanOyunu()
+## 🎮 Oyun Kuralları
 
-Formun genişliği ve yüksekliği ayarlanıyor.
-DoubleBuffered ekran titreşimini engelliyor.
-KeyDown klavye hareketlerini yakalıyor.
-Timer oluşturuluyor ve OyunGuncelle ile her tick'te metod tekrar çağırılıyor.
-OyunuBaslat() ile oyun başlatılıyor.
+- Yılan yukarı, aşağı, sola veya sağa hareket edebilir.
+- Yılan bir yem yediğinde uzar.
+- Yılan duvara çarparsa veya kendi vücuduna değerse oyun biter.
+- Oyun ekranı 400x400 pikseldir ve kareler 20x20 piksel boyutundadır.
 
-private void OyunuBaslat()
+## 🚀 Başlangıç
 
-Yılan sıfırlanıyor ve başlangıç noktası (10,10) atanıyor.
-İlk yem oluşturuluyor (YemOlustur()).
-Yön sağa (3) olarak ayarlanıyor.
-Zamanlayıcı başlatılıyor.
+Proje bir Windows Forms uygulamasıdır. Visual Studio ile açıp `F5` tuşuna basarak başlatabilirsiniz.
 
-private void YemOlustur()
+### Gereksinimler
 
-Rastgele bir Point belirlenir (formun içindeki uygun koordinatlarda).
-Yem rastgele bir noktada belirir.
+- .NET Framework veya .NET Core/5+ ile uyumlu Visual Studio
+- C# Windows Forms projesi
 
-private void OyunuGuncelle(object sender, EventArgs e)
+## 🧠 Kodun Açıklaması
 
-Oyun bittiyse: Güncellemeyi durdurur.
-Yeni baş (baş kısmı) oluşturur: Geçerli yöne göre yılan[0] (baş) noktasını değiştirir.
-Yılan duvara çarparsa veya kendine çarparsa → oyunBitti = true.
+### Ana Sınıf: `YılanOyunu : Form`
 
-Eğer yeni baş yemi yediyse: Yem yeniden oluşturulur, yılan uzar.
-Aksi halde: Kuyruktaki son parça silinir (yılan hareket eder ama uzamaz).
+#### Değişkenler
 
-Ekran yeniden çizdirilir (Invalidate() → OnPaint() çağrılır).
+- `List<Point> yılan`: Yılanın her parçasını temsil eden noktaların listesi.
+- `Point yem`: Mevcut yem pozisyonu.
+- `int yon`: Yılanın yönü (0:Yukarı, 1:Aşağı, 2:Sol, 3:Sağ).
+- `int kareboyutu`: Oyun alanındaki her bir karenin piksel boyutu.
+- `Timer oyunZamanı`: Oyun güncellemelerini kontrol eden zamanlayıcı.
+- `bool oyunBitti`: Oyun bitip bitmediğini belirten bayrak.
+- `Random rastgele`: Rastgele yem üretimi için kullanılır.
 
-private void TusBasıldı(object sender, KeyEventArgs e)
+#### Yapıcı Metot: `YılanOyunu()`
 
-Yön tuşlarına göre yon değişkeni değiştirilir.
-Aynı anda ters yönde gitmeyi engeller (örnek: yukarı giderken aşağı dönemezsin).
+- Formun boyutlarını ayarlar.
+- `DoubleBuffered` ile flicker'ı azaltır.
+- Klavye tuşlarına tepki vermek için `KeyDown` olayını tanımlar.
+- Zamanlayıcıyı oluşturur ve güncelleme olayına bağlar.
+- Oyunu başlatır.
 
-protected override void OnPaint(PaintEventArgs e)
+#### Metotlar
 
-Yılan parçaları yeşil olarak çizilir (FillRectangle ile).
-Yem kırmızı olarak çizilir.
+- `OyunuBaslat()`: Yılanı ve ilk yemi başlatır. Yönü sağ olarak ayarlar ve zamanlayıcıyı başlatır.
+- `YemOlustur()`: Ekran sınırları içinde rastgele bir yem noktası üretir.
+- `OyunuGuncelle(object sender, EventArgs e)`: 
+  - Yılanın başını yeni yöne göre hareket ettirir.
+  - Duvar ya da kendine çarpma durumunda oyunu bitirir.
+  - Yem yendiyse yılanı uzatır, aksi takdirde son parçayı siler.
+  - Formu yeniden çizer.
+- `TusBasıldı(object sender, KeyEventArgs e)`: Yön tuşlarına basıldığında yön değişimini yönetir.
+- `OnPaint(PaintEventArgs e)`: Yılanın ve yemin çizimini yapar.
 
+## 🎨 Grafikler
 
+- Yılan: `DarkOliveGreen` renkte çizilir.
+- Yem: `Red` renkte kare olarak çizilir.
 
+## 🛠️ Geliştirme Önerileri
 
+- Skor sistemi eklenebilir.
+- Durdur/Devam ettir özelliği eklenebilir.
+- Seviyeler ya da zorluk dereceleri eklenebilir.
+- Daha iyi görsel efektler ve sesler entegre edilebilir.
 
+## 📷 Ekran Görüntüsü
 
+*(Henüz eklenmedi)*
 
+## 📄 Lisans
 
-
-
-
-
-
-
-
-
+Bu proje eğitim amaçlıdır ve kişisel kullanım için serbestçe kullanılabilir.
