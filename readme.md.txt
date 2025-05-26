@@ -57,16 +57,24 @@ Proje bir Windows Forms uygulamasıdır. Visual Studio ile açıp `F5` tuşuna b
 - Yılan: `DarkOliveGreen` renkte çizilir.
 - Yem: `Red` renkte kare olarak çizilir.
 
+## 🖼️ Ekran Görüntüleri
+
+### Oyun İçi
+
+<img src="https://github.com/MehmetOKZ/Basic-Snake-Game/blob/master/asset/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-26%20111124.png?raw=true" width="400"/>
+
+<img src="https://github.com/MehmetOKZ/Basic-Snake-Game/blob/master/asset/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-26%20111141.png?raw=true" width="400"/>
+
+### Oyun Bitti Ekranı
+
+<img src="https://github.com/MehmetOKZ/Basic-Snake-Game/blob/master/asset/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-26%20111154.png?raw=true" width="400"/>
+
 ## 🛠️ Geliştirme Önerileri
 
 - Skor sistemi eklenebilir.
 - Durdur/Devam ettir özelliği eklenebilir.
 - Seviyeler ya da zorluk dereceleri eklenebilir.
 - Daha iyi görsel efektler ve sesler entegre edilebilir.
-
-## 📷 Ekran Görüntüsü
-
-*(Henüz eklenmedi)*
 
 ## 📄 Lisans
 
