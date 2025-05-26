@@ -110,7 +110,7 @@ namespace Basic_Snake_Game
             Graphics g = e.Graphics;
             foreach (var parca in yılan)
             {
-                g.FillRectangle(Brushes.LightGreen,
+                g.FillRectangle(Brushes.DarkOliveGreen,
                     parca.X * kareboyutu,
                     parca.Y * kareboyutu,
                     kareboyutu,
